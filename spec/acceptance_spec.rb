@@ -1,24 +1,29 @@
+require 'strscan'
+
 describe 'Acceptance spec' do
 	it 'implements the interface shown in the StringScanner docs' do
+		# Arrange
 		s = StringScanner.new('This is an example string')
-		s.eos?.should be false
 
-		s.should find(" ").when_scanned_with(/\w+/)
-		s.should find("an").when_scanned_with(/\w+/)
-		s.should find(" ").when_scanned_with(/\s+/)
-		s.should find("example").when_scanned_with(/\s+/)
-		s.should find(" ").when_scanned_with(/\w+/)
-		s.eos?.should be false
+		# Act & Assert
+		expect(s.eos?).to eq false
 
-		s.should find(" ").when_scanned_with(/\s+/)
-		s.should find("an").when_scanned_with(/\w+/)
-		s.should find(" ").when_scanned_with(/\s+/)
-		s.should find("example").when_scanned_with(/\w+/)
-		s.should find(" ").when_scanned_with(/\s+/)
-		s.should find("string").when_scanned_with(/\w+/)
-		s.eos?.should be true
+		expect(s.scan(/\w+/)).to eq "This"
+		expect(s.scan(/\w+/)).to eq nil
+		expect(s.scan(/\s+/)).to eq " "
+		expect(s.scan(/\s+/)).to eq nil
+		expect(s.scan(/\w+/)).to eq "is"
+		expect(s.eos?).to eq false
 
-		s.should find(nil).when_scanned_with(/\s+/)
-		s.should find(nil).when_scanned_with(/\w+/)
+		expect(s.scan(/\s+/)).to eq " "
+		expect(s.scan(/\w+/)).to eq "an"
+		expect(s.scan(/\s+/)).to eq " "
+		expect(s.scan(/\w+/)).to eq "example"
+		expect(s.scan(/\s+/)).to eq " "
+		expect(s.scan(/\w+/)).to eq "string"
+		expect(s.eos?).to eq true
+
+		expect(s.scan(/\s+/)).to eq nil
+		expect(s.scan(/\w+/)).to eq nil
 	end
 end
