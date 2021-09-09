@@ -1,9 +1,9 @@
-require 'strscan'
+require 'kseniia_strscan'
 
 describe 'Acceptance spec' do
 	it 'implements the interface shown in the StringScanner docs' do
 		# Arrange
-		s = StringScanner.new('This is an example string')
+		s = KseniiaStrscan.new('This is an example string')
 
 		# Act & Assert
 		expect(s.eos?).to eq false
