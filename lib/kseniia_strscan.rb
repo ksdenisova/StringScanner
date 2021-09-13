@@ -1,10 +1,11 @@
 class KseniiaStrscan
+
 	attr_accessor :string
 
 	def initialize(string)
-		@string = string.dup
+		@string = string.dup	
 	end
- 
+
 	def eos?
 		@string.empty?
 	end
@@ -13,8 +14,8 @@ class KseniiaStrscan
 		match = @string[regex]
 		if @string.start_with? match
 			@string.sub!(match, '')
-			match 
+			match
 		end
-		rescue TypeError
+	rescue TypeError
 	end
 end

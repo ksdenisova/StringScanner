@@ -1,11 +1,8 @@
 require 'kseniia_strscan'
 
 describe 'Acceptance spec' do
-	it 'implements the interface shown in the StringScanner docs' do
-		# Arrange
+	it 'implements interface shown in StringScanner docs' do
 		s = KseniiaStrscan.new('This is an example string')
-
-		# Act & Assert
 		expect(s.eos?).to eq false
 
 		expect(s.scan(/\w+/)).to eq "This"
